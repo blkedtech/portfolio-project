@@ -13,10 +13,20 @@ class Blog(models.Model):
     # image
     image = models.ImageField(upload_to='images/')
 
-# Add the Blog to the "settings": ('blog.apps.BlogConfig',)
+    # Add the Blog to the "settings": ('blog.apps.BlogConfig',)
 
-# Create a migration: (> python manage.py makemigration)
+    # Create a migration: (> python manage.py makemigration)
 
-# Migrate: (> python manage.py migrate)
+    # Migrate: (> python manage.py migrate)
 
-# Add to the "admin": (from .models import Blog) (admin.site.register(Blog)
+    # Add to the "admin": (from .models import Blog) (admin.site.register(Blog)
+
+    # show names on admin 
+    def __str__(self):
+        return self.title
+
+    def summary(self):
+        return self.body[:300]
+
+    def pub_date_pretty(self):
+        return self.pub_date.strftime('%b %e %Y')
